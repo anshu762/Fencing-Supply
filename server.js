@@ -80,7 +80,8 @@ module.exports = app;
 if (require.main === module) {
   const initDatabase = require('./database/init');
   initDatabase().then(() => {
-    app.listen(PORT, () => {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`\n🤺 Fencing Supply running at http://localhost:${PORT}`);
       console.log(`🗄️  Database: Neon PostgreSQL\n`);
     });
