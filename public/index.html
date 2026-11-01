@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fencing Supply — Premium Fencing Equipment India</title>
+    <meta name="description" content="India's premier fencing equipment supplier. Foils, épées, sabres, protective gear, and accessories from top brands.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤺</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <header id="main-header"></header>
+        <main id="main-content">
+            <div class="page-loader active">
+                <div class="loader-spinner"></div>
+                <p>Loading Fencing Supply...</p>
+            </div>
+        </main>
+        <footer id="main-footer"></footer>
+    </div>
+
+    <div id="toast-container"></div>
+    <div id="modal-overlay" class="modal-overlay hidden"></div>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/pages/home.js"></script>
+    <script src="/js/pages/shop.js"></script>
+    <script src="/js/pages/product.js"></script>
+    <script src="/js/pages/cart.js"></script>
+    <script src="/js/pages/checkout.js"></script>
+    <script src="/js/pages/auth.js"></script>
+    <script src="/js/pages/account.js"></script>
+    <script src="/js/pages/orders.js"></script>
+    <script src="/js/pages/tracking.js"></script>
+    <script src="/js/pages/quote.js"></script>
+    <script src="/js/pages/supplier.js"></script>
+    <script src="/js/pages/admin.js"></script>
+    <script src="/js/pages/support.js"></script>
+    <script src="/js/pages/pages.js"></script>
+    <script src="/js/router.js"></script>
+    <script src="/js/app.js"></script>
+
+    <!-- ====== COMPATIBILITY SHIMS (DO NOT REMOVE) ====== -->
+    <script>
+    (function() {
+        // 1. Pages referencing 'app-content' → redirect to 'main-content'
+        var _gid = document.getElementById.bind(document);
+        document.getElementById = function(id) {
+            if (id === 'app-content') return _gid('main-content');
+            return _gid(id);
+        };
+
+        // 2. Utils method aliases (some pages use different names)
+        if (typeof Utils !== 'undefined') {
+            if (!Utils.escape && Utils.escapeHtml) Utils.escape = Utils.escapeHtml;
+            if (!Utils.escapeHtml && Utils.escape) Utils.escapeHtml = Utils.escape;
+            if (!Utils.formatMoney && Utils.formatPrice) Utils.formatMoney = Utils.formatPrice;
+            if (!Utils.formatPrice && Utils.formatMoney) Utils.formatPrice = Utils.formatMoney;
+            if (!Utils.toast) {
+                Utils.toast = function(msg, type) {
+                    if (typeof Components !== 'undefined') Components.toast(type || 'info', msg, '');
+                    else console.log('[' + (type || 'info') + '] ' + msg);
+                };
+            }
+            if (!Utils.showError) {
+                Utils.showError = function(msg) {
+                    if (typeof Components !== 'undefined') Components.toast('error', 'Error', msg);
+                    else console.error(msg);
+                };
+            }
+            if (!Utils.setButtonLoading) {
+                Utils.setButtonLoading = function(btn, loading) {
+                    if (!btn) return;
+                    if (loading) {
+                        btn.disabled = true;
+                        btn.dataset.origText = btn.textContent;
+                        btn.textContent = 'Loading...';
+                        btn.classList.add('btn-loading');
+                    } else {
+                        btn.disabled = false;
+                        if (btn.dataset.origText) btn.textContent = btn.dataset.origText;
+                        btn.classList.remove('btn-loading');
+                    }
+                };
+            }
+            if (!Utils.formatStatus) {
+                Utils.formatStatus = function(s) {
+                    if (!s) return '';
+                    return s.replace(/_/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+                };
+            }
+            if (!Utils.formatDate) {
+                Utils.formatDate = function(d) {
+                    if (!d) return '';
+                    try {
+                        return new Date(d).toLocaleDateString('en-IN', {
+                            day: 'numeric', month: 'short', year: 'numeric',
+                            hour: '2-digit', minute: '2-digit'
+                        });
+                    } catch(e) { return d; }
+                };
+            }
+        }
+    })();
+    </script>
+    <!-- ====== END COMPATIBILITY SHIMS ====== -->
+</body>
+</html>
