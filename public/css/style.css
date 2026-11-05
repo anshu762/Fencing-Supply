@@ -465,7 +465,8 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(26, 26, 46, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    z-index: var(--z-header);
+    z-index: 1000;
+    isolation: isolate;
     transition: all var(--transition-base);
     animation: headerSlide 0.5s ease;
     border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -654,11 +655,13 @@ h1, h2, h3, h4, h5, h6 {
     top: var(--header-height);
     left: 0;
     right: 0;
-    bottom: 0;
+    height: calc(100dvh - var(--header-height));
     background: var(--primary);
-    z-index: var(--z-overlay);
+    z-index: 999;
     padding: var(--space-xl);
+    padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom, 0px));
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     animation: fadeIn 0.3s ease;
 }
 
@@ -1413,14 +1416,13 @@ textarea.form-input {
 /* ---- Hero Section ---- */
 .hero {
     position: relative;
-    min-height: 90vh;
+    min-height: calc(100vh - var(--header-height));
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
     background-size: 200% 200%;
     animation: gradientShift 8s ease infinite;
     overflow: hidden;
-    margin-top: var(--header-height);
 }
 
 .hero::before {
@@ -5385,4 +5387,51 @@ textarea.form-input {
   .form-row-v2 { grid-template-columns:1fr; }
   .data-table-wrap { margin:0 -16px; padding:0 16px; }
   .account-hero { flex-direction:column; text-align:center; }
+}
+
+/* ---- Mobile Header Fix ---- */
+@media (max-width: 768px) {
+    .header-inner {
+        padding: 0 var(--space-md);
+        gap: var(--space-sm);
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .logo-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1.1rem;
+    }
+
+    .nav-desktop {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .header-actions {
+        gap: var(--space-xs);
+        flex-shrink: 0;
+    }
+
+    .header-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.05rem;
+    }
+
+    .btn-login-header {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.8rem;
+    }
+
+    .hero-content {
+        /* padding: var(--space-2xl) 0; */
+    }
 }
